@@ -5,6 +5,7 @@ import com.example.facebookClone.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,8 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @PostMapping
+    @PostMapping("/add")
+    @RolesAllowed({"admin"})
     public Post addPost(@RequestParam Map<String,String> requestParams) throws Exception {
         String strPost = requestParams.get("post");
         String email = requestParams.get("email");
@@ -37,7 +39,8 @@ public class PostController {
         return post;
     }
 
-    @GetMapping
+    @GetMapping("/get")
+    @RolesAllowed({"admin","user"})
     public List<Post> getPost() {
         return postService.getPost();
     }
