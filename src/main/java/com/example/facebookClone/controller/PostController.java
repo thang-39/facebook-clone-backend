@@ -39,6 +39,7 @@ public class PostController {
         return post;
     }
 
+
     @GetMapping("/get")
     @RolesAllowed({"admin","user"})
     public List<Post> getPost() {
