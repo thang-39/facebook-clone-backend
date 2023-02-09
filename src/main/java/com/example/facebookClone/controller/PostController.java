@@ -37,8 +37,8 @@ public class PostController {
         return post;
     }
 
-    @GetMapping
-    public List<Post> getPost() {
+    @GetMapping("/getAll")
+    public List<Post> getPosts() {
         return postService.getPost();
     }
 }
